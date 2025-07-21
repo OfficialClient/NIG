@@ -1,0 +1,238 @@
+/* Base and layout styles remain the same */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f7fa;
+  color: #222;
+  line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+header {
+  background: linear-gradient(90deg, #5a4fcf, #a38fff);
+  color: white;
+  padding: 20px 16px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 0.15);
+}
+main {
+    display: flex;
+    flex: 1;
+    max-width: 1200px;
+    margin: 24px auto;
+    padding: 0 16px;
+    gap: 24px;
+}
+
+/* Presets Panel - stick to leftmost */
+.presets-panel {
+    flex: 0 0 260px;
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 0 14px rgb(0 0 0 / 0.07);
+}
+
+
+/* New shared wrapper for controls and preview */
+.workspace {
+    display: flex;
+    flex: 1 1 auto;
+    background: white;
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 14px rgb(0 0 0 / 0.07);
+    gap: 48px; /* spacing between preview and controls */
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.preview-section {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 240px;
+}
+
+.controls-section {
+    flex: 0 0 300px;
+}
+
+/* Controls and Preview now inherit layout only */
+.controls-section, .preview-section {
+    flex: 1 1 320px;
+    padding: 0; /* reset padding */
+    background: none; /* remove background */
+    box-shadow: none; /* remove shadow */
+}
+#presets-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.preset-item {
+  background: #f0f0ff;
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  min-height: 64px;
+  gap: 10px;
+}
+.preset-preview {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  box-shadow: 0 0 6px rgb(0 0 0 / 0.1);
+  flex-shrink: 0;
+}
+.preset-name {
+  font-weight: 600;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.preset-actions {
+  display: none;
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  flex-direction: column;
+  gap: 4px;
+  z-index: 2;
+}
+.preset-item:hover .preset-actions {
+  display: flex;
+}
+.preset-actions button {
+  font-size: 0.75em;
+  padding: 4px 6px;
+  border-radius: 5px;
+  white-space: nowrap;
+  background: #ddd;
+  color: #222;
+  border: none;
+}
+.preset-actions .remove {
+  background: #c22;
+  color: white;
+}
+.preset-actions .default {
+  background: #4caf50;
+  color: white;
+}
+.preset-actions .load {
+  background: #5a4fcf;
+  color: white;
+}
+label, legend {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+input[type="number"], select {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 1em;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+/* Color Picker */
+.color-list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+  margin-bottom: 10px;
+}
+.color-cell {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1.5px solid #bbb;
+  box-shadow: 0 0 3px rgb(0 0 0 / 0.12);
+  cursor: pointer;
+}
+.color-cell input[type="color"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.color-cell:hover .remove-btn {
+  display: flex;
+}
+.remove-btn {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  width: 18px;
+  height: 18px;
+  background-color: #c22;
+  border-radius: 50%;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+/* Icon Preview Box */
+#icon-preview {
+  width: 200px;
+  height: 200px;
+  margin-top: 8px;
+  border-radius: 20px;
+  box-shadow: 0 0 18px rgb(0 0 0 / 0.12);
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4em;
+  font-weight: bold;
+  color: white;
+  overflow: hidden;
+}
+
+/* Buttons */
+.buttons-row, .export-buttons {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+button {
+  cursor: pointer;
+  padding: 10px 18px;
+  font-weight: 600;
+  background: #5a4fcf;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background: #463baf;
+}
